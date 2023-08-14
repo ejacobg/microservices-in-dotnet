@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello", "Hello\Hello.csproj", "{3A59B771-5BA5-47AB-A27D-3DA6518283AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,17 @@ Global
 		{3A59B771-5BA5-47AB-A27D-3DA6518283AF}.Release|x64.Build.0 = Release|Any CPU
 		{3A59B771-5BA5-47AB-A27D-3DA6518283AF}.Release|x86.ActiveCfg = Release|Any CPU
 		{3A59B771-5BA5-47AB-A27D-3DA6518283AF}.Release|x86.Build.0 = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|x64.Build.0 = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Debug|x86.Build.0 = Debug|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|x64.ActiveCfg = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|x64.Build.0 = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|x86.ActiveCfg = Release|Any CPU
+		{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
