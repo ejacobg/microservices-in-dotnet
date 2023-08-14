@@ -12,13 +12,12 @@ namespace Hello
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add MVC controller and other helper services.
+            services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -26,14 +25,13 @@ namespace Hello
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection(); // Redirects all HTTP requests to HTTPS.
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers(); // Add all endpoints from our controllers to the routing table.
             });
         }
     }
