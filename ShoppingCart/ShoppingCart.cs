@@ -3,21 +3,22 @@ using System.Linq;
 
 namespace ShoppingCart
 {
+    // ShoppingCart represents a set of items owned by a particular user.
     public class ShoppingCart
     {
-        private readonly HashSet<ShoppingCartItem> items = new();
+        private readonly HashSet<ShoppingCartItem> _items = new();
         public int UserId { get; }
-        public IEnumerable<ShoppingCartItem> Items => items;
+        public IEnumerable<ShoppingCartItem> Items => _items;
         public ShoppingCart(int userId) => UserId = userId;
 
         public void AddItems(IEnumerable<ShoppingCartItem> shoppingCartItems)
         {
             foreach (var item in shoppingCartItems)
-                items.Add(item);
+                _items.Add(item);
         }
 
         public void RemoveItems(int[] productCatalogueIds) =>
-            items.RemoveWhere(i => productCatalogueIds.Contains(i.ProductCatalogueId));
+            _items.RemoveWhere(i => productCatalogueIds.Contains(i.ProductCatalogueId));
     }
 
     public record ShoppingCartItem(
