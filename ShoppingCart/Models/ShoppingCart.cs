@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ShoppingCart
+namespace ShoppingCart.Models
 {
     // ShoppingCart represents a set of items owned by a particular user.
     public class ShoppingCart
