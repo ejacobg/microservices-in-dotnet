@@ -15,6 +15,11 @@ namespace ShoppingCart
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.Scan(selector =>
+                selector
+                    .FromAssemblyOf<Startup>()
+                    .AddClasses()
+                    .AsImplementedInterfaces());
         }
 
         public void Configure(IApplicationBuilder app)
