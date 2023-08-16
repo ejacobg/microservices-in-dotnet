@@ -7,11 +7,11 @@ COPY ["ShoppingCart.csproj", "ShoppingCart/"]
 # Pull the project's dependencies.
 RUN dotnet restore "ShoppingCart/ShoppingCart.csproj"
 
-# Move the rest of the project files over. This can technically be done first (ie. replaces the first COPY command).
-COPY . .
-
 # Build the project to the /app/build directory. This build output stays in the build container.
 WORKDIR "/src/ShoppingCart"
+
+# Move the rest of the project files over. This can technically be done first (ie. replaces the first COPY command).
+COPY . .
 RUN dotnet build "ShoppingCart.csproj" -c Release -o /app/build
 
 # Create a new "publish" container and compile the application into the /app/publish directory.

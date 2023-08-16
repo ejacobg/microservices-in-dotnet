@@ -1,3 +1,5 @@
+# Note: if making requests to a running Docker container, use HTTP, not HTTPS.
+
 GET https://localhost:5001/shoppingcart/123
 
 ###
