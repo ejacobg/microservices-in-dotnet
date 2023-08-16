@@ -6,21 +6,21 @@ namespace ShoppingCart.Models
     public interface IShoppingCartStore
     {
         // Get returns the shopping cart for the given user, creating one if it doesn't exist.
-        Models.ShoppingCart Get(int userId);
+        ShoppingCart Get(int userId);
         
         // Save saves the given shopping cart to the data store.
-        void Save(Models.ShoppingCart shoppingCart);
+        void Save(ShoppingCart shoppingCart);
     }
 
     // ShoppingCartStore provides an in-memory data store for shopping carts.
     public class ShoppingCartStore : IShoppingCartStore
     {
-        private static readonly Dictionary<int, Models.ShoppingCart> Database = new Dictionary<int, Models.ShoppingCart>();
+        private static readonly Dictionary<int, ShoppingCart> Database = new Dictionary<int, ShoppingCart>();
 
-        public Models.ShoppingCart Get(int userId) =>
-            Database.ContainsKey(userId) ? Database[userId] : new Models.ShoppingCart(userId);
+        public ShoppingCart Get(int userId) =>
+            Database.ContainsKey(userId) ? Database[userId] : new ShoppingCart(userId);
 
-        public void Save(Models.ShoppingCart shoppingCart) =>
+        public void Save(ShoppingCart shoppingCart) =>
             Database[shoppingCart.UserId] = shoppingCart;
     }
 }
