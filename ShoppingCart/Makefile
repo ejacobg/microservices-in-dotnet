@@ -20,16 +20,28 @@ docker/build-and-run: docker/build docker/run
 docker/stop:
 	docker stop shopping-cart
 
+# Apply this tag before pushing your container to your container registry.
+.PHONY: docker/tag
+docker/tag:
+	docker tag shopping-cart ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0
+
+.PHONY: docker/push-registry
+docker/push-registry:
+	docker push ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0
+
 # ==================================================================================== #
 # KUBERNETES
 # ==================================================================================== #
 
 # Make sure "Enable Kubernetes" is enabled in your Docker Desktop settings.
+# Make sure that you're using the "image: shopping-cart" line in shopping-cart.yaml.
+# Confirm that you're in the correct context (ie. AKS or localhost) before using these targets. 
 
 .PHONY: k8s/deploy
 k8s/deploy:
 	kubectl apply -f shopping-cart.yaml
 
+# Check that your deployments have succeeded.
 .PHONY: k8s/check
 k8s/check:
 	kubectl get all
@@ -38,10 +50,13 @@ k8s/check:
 k8s/delete:
 	kubectl delete -f shopping-cart.yaml
 
+# Use this target to show all your active contexts before switching between them.
 .PHONY: k8s/contexts
 k8s/contexts:
 	kubectl config get-contexts
 
+# If you're running both AKS and localhost clusters at the same time, you have to make sure that kubectl is pointing to the correct cluster before running your commands.
+# Use this target to switch between your contexts.
 .PHONY: k8s/switch
 k8s/switch:
 	kubectl config use-context ${context}
@@ -49,6 +64,9 @@ k8s/switch:
 # ==================================================================================== #
 # AZURE KUBERNETES SERVICE
 # ==================================================================================== #
+
+# Once your cluster is created, you can stop and start it from the Azure portal (portal.azure.com).
+# Make sure that you're using the "image: ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0" line in shopping-cart.yaml.
 
 .PHONY: aks/create
 aks/create:
@@ -67,3 +85,8 @@ aks/dashboard:
 .PHONY: aks/delete
 aks/delete:
 	az group delete --name ShoppingCart --yes --no-wait
+
+# Authenticate your Docker client with your container registry.
+.PHONY: aks/acr-login
+aks/acr-login:
+	az acr login --name ejacobgshoppingcartregistry

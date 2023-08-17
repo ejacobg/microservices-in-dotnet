@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
         - name: shopping-cart # Use the shopping-cart container created from the Makefile.
-          image: shopping-cart # Use this line if deploying locally.
+          # image: shopping-cart # Use this line if deploying locally.
+          image: ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0 # Use this line if deploying to AKS.
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80 # Our container will communicate on port 80.
