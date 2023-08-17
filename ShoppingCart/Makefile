@@ -15,3 +15,15 @@ docker/build-and-run: docker/build docker/run
 .PHONY: docker/stop
 docker/stop:
 	docker stop shopping-cart
+
+.PHONY: k8s/deploy
+k8s/deploy:
+	kubectl apply -f shopping-cart.yaml
+
+.PHONY: k8s/check
+k8s/check:
+	kubectl get all
+
+.PHONY: k8s/delete
+k8s/delete:
+	kubectl delete -f shopping-cart.yaml

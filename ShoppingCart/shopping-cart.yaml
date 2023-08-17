@@ -1,0 +1,35 @@
+# This section describes what container(s) we want to deploy and how to set them up.
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: shopping-cart
+spec:
+  replicas: 1 # We're only using a single instance.
+  selector:
+    matchLabels:
+      app: shopping-cart
+  template:
+    metadata:
+      labels:
+        app: shopping-cart
+    spec:
+      containers:
+        - name: shopping-cart # Use the shopping-cart container created from the Makefile.
+          image: shopping-cart # Use this line if deploying locally.
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80 # Our container will communicate on port 80.
+---
+# This section describes how to set up a load balancer in front of our container. The load balancer allows outside traffic to reach the container.
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopping-cart
+spec:
+  type: LoadBalancer
+  ports:
+    - name: shopping-cart
+      port: 5000 # The load balancer is exposed on port 5000.
+      targetPort: 80 # Load balancer requests are mapped to port 80 of the target container (see below).
+  selector:
+    app: shopping-cart # Requests get routed to our shopping-cart container.
