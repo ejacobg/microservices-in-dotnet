@@ -1,10 +1,10 @@
 # Note: if making requests to a running Docker container, use HTTP, not HTTPS.
 
-GET {{scheme}}localhost:{{port}}/shoppingcart/123
+GET {{scheme}}{{host}}:{{port}}/shoppingcart/123
 
 ###
 
-POST {{scheme}}localhost:{{port}}/shoppingcart/123/items
+POST {{scheme}}{{host}}:{{port}}/shoppingcart/123/items
 Accept: application/json
 Content-Type: application/json
 
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 ###
 
-DELETE {{scheme}}localhost:{{port}}/shoppingcart/123/items
+DELETE {{scheme}}{{host}}:{{port}}/shoppingcart/123/items
 Accept: application/json
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-GET {{scheme}}localhost:{{port}}/events?start=0&end=20
+GET {{scheme}}{{host}}:{{port}}/events?start=0&end=20
 Accept: application/json
 
 ###
