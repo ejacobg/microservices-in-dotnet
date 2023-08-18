@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: special-offers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: special-offers
+  template:
+    metadata:
+      labels:
+        app: special-offers
+    spec:
+      containers:
+        - name: special-offers
+          image: your_unique_registry_name.azurecr.io/special-offers:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: special-offers
+spec:
+  type: LoadBalancer
+  ports:
+    - name: special-offers
+      port: 5002
+      targetPort: 80
+  selector:
+    app: special-offers
