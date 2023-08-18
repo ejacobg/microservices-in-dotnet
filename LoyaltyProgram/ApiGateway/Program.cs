@@ -86,7 +86,7 @@ static async Task PrettyPrint(HttpResponseMessage response)
     WriteLine("********** Response **********");
     WriteLine($"status code: {response.StatusCode}");
     WriteLine("Headers: " + response.Headers.Aggregate("",
-        (acc, h) => $"{acc}{NewLine}\t{h.Key}: {h.Value.Aggregate((hAcc, hVal) => $"{hAcc}{hVal}, ")}") ?? "");
+        (acc, h) => $"{acc}{NewLine}\t{h.Key}: {h.Value.Aggregate((hAcc, hVal) => $"{hAcc}{hVal}, ")}"));
     if (response.Content.Headers.ContentLength > 0)
         WriteLine(@$"Body:{NewLine}{
             JsonSerializer.Serialize(await JsonDocument.ParseAsync(await response.Content.ReadAsStreamAsync()), new JsonSerializerOptions { WriteIndented = true })
