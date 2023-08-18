@@ -8,10 +8,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoyaltyProgram", "LoyaltyProgram", "{018254E5-004A-4748-A3B0-482B3254C1BE}"
+	ProjectSection(SolutionItems) = preProject
+		LoyaltyProgram\examples.http = LoyaltyProgram\examples.http
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram\LoyaltyProgram.csproj", "{1ED5885E-05FF-4FC4-9BAD-51BD5FEE8434}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "LoyaltyProgram\ApiGateway\ApiGateway.csproj", "{7619B310-E495-4051-B1BE-764D2D0BD99C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialOffers", "LoyaltyProgram\SpecialOffers\SpecialOffers.csproj", "{62191B6C-8424-4E3F-AC52-0E07FAD5A380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,9 +79,22 @@ Global
 		{7619B310-E495-4051-B1BE-764D2D0BD99C}.Release|x64.Build.0 = Release|Any CPU
 		{7619B310-E495-4051-B1BE-764D2D0BD99C}.Release|x86.ActiveCfg = Release|Any CPU
 		{7619B310-E495-4051-B1BE-764D2D0BD99C}.Release|x86.Build.0 = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|x64.Build.0 = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Debug|x86.Build.0 = Debug|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|x64.ActiveCfg = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|x64.Build.0 = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|x86.ActiveCfg = Release|Any CPU
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1ED5885E-05FF-4FC4-9BAD-51BD5FEE8434} = {018254E5-004A-4748-A3B0-482B3254C1BE}
 		{7619B310-E495-4051-B1BE-764D2D0BD99C} = {018254E5-004A-4748-A3B0-482B3254C1BE}
+		{62191B6C-8424-4E3F-AC52-0E07FAD5A380} = {018254E5-004A-4748-A3B0-482B3254C1BE}
 	EndGlobalSection
 EndGlobal

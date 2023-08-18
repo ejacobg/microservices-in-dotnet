@@ -1,0 +1,34 @@
+POST https://localhost:5001/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 10,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+###
+
+// Change user ID as needed.
+// Note that all fields (except ID) need to be present.
+PUT https://localhost:5001/users/0
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 100000,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+###
+
+// Change user ID as needed.
+GET https://localhost:5001/users/0
+
+###
