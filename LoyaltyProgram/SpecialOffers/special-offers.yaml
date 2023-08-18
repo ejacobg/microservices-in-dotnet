@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: special-offers
-          image: your_unique_registry_name.azurecr.io/special-offers:1.0.0
+          image: ejacobgshoppingcartregistry.azurecr.io/special-offers:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
