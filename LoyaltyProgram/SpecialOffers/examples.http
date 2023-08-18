@@ -1,0 +1,29 @@
+GET https://localhost:5001/events?end=100
+
+###
+
+POST https://localhost:5001/offers
+Accept: application/json
+Content-Type: application/json
+
+{
+  "Description": "Nice deal"
+}
+
+###
+
+GET https://localhost:5001/offers/0
+
+###
+
+PUT https://localhost:5001/offers/0
+Accept: application/json
+Content-Type: application/json
+
+{
+  "Description": "Best deal ever - JUST GOT BETTER"
+}
+
+###
+
+DELETE https://localhost:5001/offers/0

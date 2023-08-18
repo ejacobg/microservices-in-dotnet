@@ -24,4 +24,3 @@ GET {{scheme}}{{host}}:{{port}}/events?start=0&end=20
 Accept: application/json
 
 ###
-
