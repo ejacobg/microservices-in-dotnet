@@ -1,4 +1,4 @@
-POST https://localhost:5001/users
+POST {{scheme}}{{host}}:{{port}}/users
 Accept: application/json
 Content-Type: application/json
 
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 // Change user ID as needed.
 // Note that all fields (except ID) need to be present.
-PUT https://localhost:5001/users/0
+PUT {{scheme}}{{host}}:{{port}}/users/0
 Accept: application/json
 Content-Type: application/json
 
@@ -29,6 +29,6 @@ Content-Type: application/json
 ###
 
 // Change user ID as needed.
-GET https://localhost:5001/users/0
+GET {{scheme}}{{host}}:{{port}}/users/0
 
 ###
