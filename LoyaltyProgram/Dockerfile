@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ./LoyaltyProgram .
-COPY ./EventConsumer .
+COPY ./LoyaltyProgram ./LoyaltyProgram
+COPY ./EventConsumer ./EventConsumer
 RUN dotnet restore "LoyaltyProgram/LoyaltyProgram.csproj"
 RUN dotnet restore "EventConsumer/EventConsumer.csproj"
 WORKDIR "/src/LoyaltyProgram"

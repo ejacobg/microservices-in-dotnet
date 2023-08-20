@@ -26,6 +26,7 @@ Task<long> GetStartIdFromDatastore() => Task.FromResult(0L);
 // fake implementation. Should apply business rules to events
 async Task ProcessEvents(Stream content)
 {
+    // Deserialization doesn't seem to work correctly. Getting default values for all the fields. Will not be fixing this for now.
     var events = await JsonSerializer.DeserializeAsync<SpecialOfferEvent[]>(content) ?? Array.Empty<SpecialOfferEvent>();
     foreach (var @event in events)
     {

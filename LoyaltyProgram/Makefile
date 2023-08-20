@@ -68,3 +68,12 @@ k8s/contexts:
 .PHONY: k8s/switch
 k8s/switch:
 	kubectl config use-context ${context}
+
+# ==================================================================================== #
+# AZURE KUBERNETES SERVICE
+# ==================================================================================== #
+
+# Authenticate your Docker client with your container registry.
+.PHONY: aks/acr-login
+aks/acr-login:
+	az acr login --name ejacobgshoppingcartregistry
