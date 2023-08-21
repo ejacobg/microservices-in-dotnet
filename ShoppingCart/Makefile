@@ -29,6 +29,16 @@ docker/tag:
 docker/push-registry:
 	docker push ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0
 
+.PHONY: docker/run-sql-server
+docker/run-sql-server:
+	# If you wish to change the password, you have to update your connection strings to match.
+	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+# If you want to stop running the SQL Server container, use `docker stop <name>` using the name from this command.
+.PHONY: docker/check-sql-server
+docker/check-sql-server:
+	docker ps
+
 # ==================================================================================== #
 # KUBERNETES
 # ==================================================================================== #
