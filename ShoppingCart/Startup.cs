@@ -23,7 +23,12 @@ namespace ShoppingCart
                 selector
                     .FromAssemblyOf<Startup>()
                     // Copied from original repo. Not exactly sure what the implementation type filter does, but it is needed to run the project.
-                    .AddClasses(c => c.Where(t => t != typeof(ProductCatalogClient) && t.GetMethods().All(m => m.Name != "<Clone>$")))
+                    .AddClasses(c =>
+                        c.Where(t =>
+                            t != typeof(ProductCatalogClient)
+                            && t != typeof(SqlEventStore)
+                            && t != typeof(InmemEventStore)
+                            && t.GetMethods().All(m => m.Name != "<Clone>$")))
                     .AsImplementedInterfaces());
 
             // Inject a typed HTTP client into our ProductCatalogClient.
