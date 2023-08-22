@@ -1,35 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
+using EventStore.ClientAPI;
 
 namespace ShoppingCart.Models
 {
-    // IEventStore represents a service for managing events on an event feed.
+    /// <summary>
+    /// IEventStore represents a service for managing events on an event feed.
+    /// </summary>
     public interface IEventStore
     {
-        // GetEvents returns all events whose sequence number falls within the given bounds (inclusive). These events will be ordered sequentially.
-        IEnumerable<Event> GetEvents(long firstEventSequenceNumber, long lastEventSequenceNumber);
+        // GetEvents returns all events whose sequence number falls within the given bounds (inclusivity depends on implementation). These events may or may not be ordered sequentially.
+        Task<IEnumerable<Event>> GetEvents(long firstEventSequenceNumber, long lastEventSequenceNumber);
         
         // Raise adds the given event to the store.
-        void Raise(string eventName, object content);
+        Task Raise(string eventName, object content);
     }
-  
-    public class EventStore : IEventStore
+
+    public class InmemEventStore : IEventStore
     {
         private static long _currentSequenceNumber;
         private static readonly IList<Event> Database = new List<Event>();
 
-        public IEnumerable<Event> GetEvents(
+        public Task<IEnumerable<Event>> GetEvents(
             long firstEventSequenceNumber,
             long lastEventSequenceNumber) 
-            => Database
+            => Task.FromResult(Database
                 .Where(e =>
                     e.SequenceNumber >= firstEventSequenceNumber &&
                     e.SequenceNumber <= lastEventSequenceNumber)
-                .OrderBy(e => e.SequenceNumber);
+                .OrderBy(e => e.SequenceNumber).AsEnumerable());
 
-        public void Raise(string eventName, object content)
+        public Task Raise(string eventName, object content)
         {
             var seqNumber = Interlocked.Increment(ref _currentSequenceNumber);
             Database.Add(
@@ -38,6 +44,7 @@ namespace ShoppingCart.Models
                     DateTimeOffset.UtcNow,
                     eventName,
                     content));
+            return Task.CompletedTask;
         }
     }
 }
