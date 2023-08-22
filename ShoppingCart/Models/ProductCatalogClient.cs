@@ -18,20 +18,22 @@ namespace ShoppingCart.Models
     public class ProductCatalogClient : IProductCatalogClient
     {
         private readonly HttpClient _client;
+        private readonly ICache _cache; // Cache responses from the product catalog if it defines any caching headers.
 
         private static readonly string
             ProductCatalogBaseUrl =
-                @"https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
+                "https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
 
         private static readonly string GetProductPathTemplate = "?productIds=[{0}]"; // eg. ?productIds=[1,2]
 
-        public ProductCatalogClient(HttpClient client)
+        public ProductCatalogClient(HttpClient client, ICache cache)
         {
             client.BaseAddress =
                 new Uri(ProductCatalogBaseUrl); // Configure the client to make requests to the catalog service.
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json")); // Accept JSON responses.
             _client = client;
+            _cache = cache;
         }
 
         public async Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogIds)
@@ -43,7 +45,26 @@ namespace ShoppingCart.Models
         private async Task<HttpResponseMessage> RequestProductFromProductCatalog(int[] productCatalogIds)
         {
             var productsResource = string.Format(GetProductPathTemplate, string.Join(",", productCatalogIds));
-            return await _client.GetAsync(productsResource);
+            var response = _cache.Get(productsResource) as HttpResponseMessage;
+
+            // A null response indicates a cache miss.
+            if (response is null)
+            {
+                // Manually retrieve the response from the product catalog and save it to the cache.
+                response = await _client.GetAsync(productsResource);
+                AddToCache(productsResource, response);
+            }
+
+            return response;
+        }
+
+        private void AddToCache(string resource, HttpResponseMessage response)
+        {
+            var cacheHeader = response.Headers.FirstOrDefault(h => h.Key == "cache-control");
+            if (!string.IsNullOrEmpty(cacheHeader.Key)
+                && CacheControlHeaderValue.TryParse(cacheHeader.Value.ToString(), out var cacheControl)
+                && cacheControl?.MaxAge.HasValue is true)
+                _cache.Add(resource, response, cacheControl.MaxAge!.Value);
         }
 
         private static async Task<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(
