@@ -21,29 +21,29 @@ namespace ShoppingCart.Controllers
 
         // Objects (like ShoppingCart) will be serialized to JSON before being returned in the response.
         [HttpGet("{userId:int}")]
-        public Models.ShoppingCart Get(int userId) =>
-            _shoppingCartStore.Get(userId);
+        public async Task<Models.ShoppingCart> Get(int userId) =>
+            await _shoppingCartStore.Get(userId);
 
         [HttpPost("{userId:int}/items")]
         public async Task<Models.ShoppingCart> Post(
             int userId,
             [FromBody] int[] productIds) // Automatically deserialize the request body into an array.
         {
-            var shoppingCart = _shoppingCartStore.Get(userId);
+            var shoppingCart = await _shoppingCartStore.Get(userId);
             var shoppingCartItems =
                 await _productCatalogClient
                     .GetShoppingCartItems(productIds);
             shoppingCart.AddItems(shoppingCartItems, _eventStore);
-            _shoppingCartStore.Save(shoppingCart);
+            await _shoppingCartStore.Save(shoppingCart);
             return shoppingCart;
         }
-        
+
         [HttpDelete("{userid:int}/items")]
-        public Models.ShoppingCart Delete(int userId, [FromBody] int[] productIds)
+        public async Task<Models.ShoppingCart> Delete(int userId, [FromBody] int[] productIds)
         {
-            var shoppingCart = _shoppingCartStore.Get(userId);
+            var shoppingCart = await _shoppingCartStore.Get(userId);
             shoppingCart.RemoveItems(productIds, _eventStore);
-            _shoppingCartStore.Save(shoppingCart);
+            await _shoppingCartStore.Save(shoppingCart);
             return shoppingCart;
         }
     }

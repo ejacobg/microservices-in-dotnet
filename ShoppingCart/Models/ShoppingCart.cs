@@ -10,10 +10,18 @@ namespace ShoppingCart.Models
         // _items stores ShoppingCartItems by their ProductCatalogueId.
         private readonly HashSet<ShoppingCartItem> _items = new();
 
+        public int? Id { get; }
         public int UserId { get; }
         public IEnumerable<ShoppingCartItem> Items => _items;
 
         public ShoppingCart(int userId) => UserId = userId;
+
+        public ShoppingCart(int? id, int userId, IEnumerable<ShoppingCartItem> items)
+        {
+            Id = id;
+            UserId = userId;
+            _items = new HashSet<ShoppingCartItem>();
+        }
 
         public void AddItems(IEnumerable<ShoppingCartItem> shoppingCartItems, IEventStore eventStore)
         {
