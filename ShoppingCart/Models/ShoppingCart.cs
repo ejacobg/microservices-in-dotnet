@@ -21,7 +21,7 @@ namespace ShoppingCart.Models
         {
             Id = id;
             UserId = userId;
-            _items = new HashSet<ShoppingCartItem>();
+            _items = items.ToHashSet();
         }
 
         public void AddItems(IEnumerable<ShoppingCartItem> shoppingCartItems, IEventStore eventStore)
@@ -35,7 +35,6 @@ namespace ShoppingCart.Models
         {
             foreach (var item in _items.Where(i => productCatalogueIds.Contains(i.ProductCatalogueId)))
             {
-                // For some reason, removal events don't seem to be added to the event stream when using EventStoreDB.
                 eventStore.Raise("ShoppingCartItemRemoved", new {UserId, item});
                 _items.Remove(item);
             }
