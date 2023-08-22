@@ -29,15 +29,30 @@ docker/tag:
 docker/push-registry:
 	docker push ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0
 
+.PHONY: docker/pull-sql-server
+docker/pull-sql-server:
+	docker pull mcr.microsoft.com/mssql/server
+
+# After starting the database, make sure to apply the migrations in the database-setup.sql file.
 .PHONY: docker/run-sql-server
 docker/run-sql-server:
 	# If you wish to change the password, you have to update your connection strings to match.
 	docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=yourStrong(!)Password' -p 1433:1433 -d mcr.microsoft.com/mssql/server
+	# SA_PASSWORD is deprecated? https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&pivots=cs1-bash#pullandrun2022
 
-# If you want to stop running the SQL Server container, use `docker stop <name>` using the name from this command.
-.PHONY: docker/check-sql-server
-docker/check-sql-server:
+# If you want to stop running the SQL Server or EventStore containers, use `docker stop <name>` using the name from this command.
+.PHONY: docker/check
+docker/check:
 	docker ps
+
+.PHONY: docker/pull-eventstore
+docker/pull-eventstore:
+	docker pull eventstore/eventstore
+
+# Runs EventStore on http://localhost:2113. If running correctly, a login page should be displayed. Enter username "admin" and password "changeit".
+.PHONY: docker/run-eventstore
+	# If you're getting TLS errors, use the --insecure flag. Do not do this in production.
+	docker run --name eventstore-node -it -p 2113:2113 -p 1113:1113 --rm eventstore/eventstore:latest --run-projections All --enable-external-tcp --enable-atom-pub-over-http
 
 # ==================================================================================== #
 # KUBERNETES
