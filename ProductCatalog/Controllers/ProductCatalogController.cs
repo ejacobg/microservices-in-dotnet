@@ -35,10 +35,10 @@ namespace ProductCatalog.Controllers
     {
         // GetProductsByIds generates fake products given a list of IDs.
         public IEnumerable<ProductCatalogProduct> GetProductsByIds(IEnumerable<int> productIds) =>
-            productIds.Select(id => new ProductCatalogProduct(id, "foo" + id, "bar", new Money()));
+            productIds.Select(id => new ProductCatalogProduct(id, "foo" + id, "bar", new Money("", 0))); // Money fields cannot be null.
     }
 
     public record ProductCatalogProduct(int ProductId, string ProductName, string Description, Money Price);
 
-    public record Money;
+    public record Money(string Currency, decimal Amount);
 }

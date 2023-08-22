@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Features;
 
 namespace ShoppingCart.Models
@@ -34,7 +35,8 @@ namespace ShoppingCart.Models
         {
             foreach (var item in _items.Where(i => productCatalogueIds.Contains(i.ProductCatalogueId)))
             {
-                eventStore.Raise("ShoppingCartItemRemoved", new {UserId, shoppingCartItem = item});
+                // For some reason, removal events don't seem to be added to the event stream when using EventStoreDB.
+                eventStore.Raise("ShoppingCartItemRemoved", new {UserId, item});
                 _items.Remove(item);
             }
         }

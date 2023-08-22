@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-GET {{scheme}}{{host}}:{{port}}/events?start=0&end=20
+GET {{scheme}}{{host}}:{{port}}/events?start=0&end=40
 Accept: application/json
 
 ###
