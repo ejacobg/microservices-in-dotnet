@@ -5,11 +5,14 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using ApiGateway;
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 using static System.Console;
 using static System.Environment;
 
 var host = args.Length > 0 ? args[0] : "https://localhost:5001";
-var client = new LoyaltyProgramClient(new HttpClient { BaseAddress = new Uri(host) });
+var client = ConfigureClient();
 var processCommand =
     new Dictionary<char, (string description, Func<string, Task<(bool, HttpResponseMessage)>> handler)>
     {
@@ -56,7 +59,6 @@ while (cont)
     }
 }
 
-
 async Task<(bool, HttpResponseMessage)> HandleUpdateInterestsCommand(string cmd)
 {
     var response = await client.QueryUser(cmd.Split(' ').Skip(1).First());
@@ -79,7 +81,6 @@ async Task<(bool, HttpResponseMessage)> HandleUpdateInterestsCommand(string cmd)
     return (true, res);
 }
 
-
 static async Task PrettyPrint(HttpResponseMessage response)
 {
     if (response.StatusCode == 0) return;
@@ -91,4 +92,36 @@ static async Task PrettyPrint(HttpResponseMessage response)
         WriteLine(@$"Body:{NewLine}{
             JsonSerializer.Serialize(await JsonDocument.ParseAsync(await response.Content.ReadAsStreamAsync()), new JsonSerializerOptions { WriteIndented = true })
         }");
+}
+
+// Creates and injects an HttpClient into a LoyaltyProgramClient instance. For other applications, this would be placed in the Startup.ConfigureServices() method.
+LoyaltyProgramClient ConfigureClient()
+{
+    // These are the same policies from the RetryingClient.
+    var exponentialRetryPolicy =
+        Policy<HttpResponseMessage>
+            .Handle<HttpRequestException>()
+            .OrTransientHttpStatusCode()
+            .WaitAndRetryAsync(
+                3,
+                attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)));
+
+    var circuitBreakerPolicy =
+        Policy<HttpResponseMessage>
+            .Handle<HttpRequestException>()
+            .OrTransientHttpStatusCode()
+            .CircuitBreakerAsync(5, TimeSpan.FromMinutes(1));
+
+    var serviceProvider =
+        new ServiceCollection()
+            .AddHttpClient<LoyaltyProgramClient>()
+            .AddPolicyHandler(request =>
+                request.Method == HttpMethod.Get // We consider all GET requests to be queries; everything else is a command.
+                    ? circuitBreakerPolicy
+                    : exponentialRetryPolicy)
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(host))
+            .Services
+            .BuildServiceProvider();
+
+    return serviceProvider.GetService<LoyaltyProgramClient>();
 }
