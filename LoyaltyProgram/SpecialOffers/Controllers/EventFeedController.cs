@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SpecialOffers.Models;
 
@@ -15,12 +16,12 @@ namespace SpecialOffers.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<Event[]> GetEvents([FromQuery] int start, [FromQuery] int end)
+        public async Task<ActionResult<Event[]>> GetEvents([FromQuery] int start, [FromQuery] int end)
         {
             if (start < 0 || end < start)
                 return BadRequest();
 
-            return _eventStore.GetEvents(start, end).ToArray();
+            return (await _eventStore.GetEvents(start, end)).ToArray();
         }
     }
 }
