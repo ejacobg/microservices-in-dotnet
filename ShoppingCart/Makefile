@@ -62,6 +62,7 @@ docker/run-eventstore:
 # Make sure "Enable Kubernetes" is enabled in your Docker Desktop settings.
 # Make sure that you're using the "image: shopping-cart" line in shopping-cart.yaml.
 # Confirm that you're in the correct context (ie. AKS or localhost) before using these targets. 
+# Make sure that all relevant container have been built and pushed.
 
 .PHONY: k8s/deploy
 k8s/deploy:
@@ -71,6 +72,16 @@ k8s/deploy:
 .PHONY: k8s/check
 k8s/check:
 	kubectl get all
+
+# Inspect that the configuration has been applied.
+.PHONY: k8s/inspect
+k8s/inspect:
+	kubectl describe deployment.apps/shopping-cart
+
+# Get the logs from the shopping cart.
+.PHONY: k8s/logs
+k8s/logs:
+	kubectl logs -f --tail=10 deployment.apps/shopping-cart
 
 .PHONY: k8s/delete
 k8s/delete:

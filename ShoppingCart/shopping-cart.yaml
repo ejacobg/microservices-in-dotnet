@@ -15,11 +15,24 @@ spec:
     spec:
       containers:
         - name: shopping-cart # Use the shopping-cart container created from the Makefile.
-          # image: shopping-cart # Use this line if deploying locally.
-          image: ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0 # Use this line if deploying to AKS.
+          image: shopping-cart # Use this line if deploying locally.
+          # image: ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0 # Use this line if deploying to AKS.
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80 # Our container will communicate on port 80.
+          # Have Kubernetes check the status of this container.
+          livenessProbe: # Configure the liveness check.
+            httpGet:
+              path: /health/live
+              port: 80
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          startupProbe: # Configure the startup check.
+            httpGet:
+              path: /health/startup
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 10
 ---
 # This section describes how to set up a load balancer in front of our container. The load balancer allows outside traffic to reach the container.
 apiVersion: v1

@@ -53,11 +53,15 @@ namespace ShoppingCart
             services.AddHealthChecks()
                 .AddCheck<DbHealthCheck>( // Attach our custom database checker.
                     nameof(DbHealthCheck),
-                    tags: new []{ "startup"})
+                    tags: new[] { "startup" })
                 .AddCheck( // Add a dummy liveness check that always returns healthy.
                     "LivenessHealthCheck",
                     () => HealthCheckResult.Healthy(),
                     tags: new[] { "liveness" }); // Add tags to make this check easy to discover.
+            // .AddCheck( // This dummy startup check is mainly to use for Kubernetes. The current deployment does not start a SQL Server container, so the DbHealthCheck test always fails.
+            //     "StartupHealthCheck",
+            //     () => HealthCheckResult.Healthy(),
+            //     tags: new[] { "startup" }); // Add tags to make this check easy to discover.
         }
 
         public void Configure(IApplicationBuilder app)
