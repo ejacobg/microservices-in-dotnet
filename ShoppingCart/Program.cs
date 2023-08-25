@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Formatting.Json;
 
 namespace ShoppingCart
 {
@@ -18,9 +20,15 @@ namespace ShoppingCart
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .UseSerilog((context, logger) =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    logger
+                        .Enrich.FromLogContext();
+                    if (context.HostingEnvironment.IsDevelopment())
+                        logger.WriteTo.ColoredConsole(); // Normal logs are easier to read in development.
+                    else
+                        logger.WriteTo.Console(new JsonFormatter()); // Use JSON logs in production.
+                })
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

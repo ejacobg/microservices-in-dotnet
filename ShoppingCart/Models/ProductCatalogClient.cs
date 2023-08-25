@@ -23,8 +23,8 @@ namespace ShoppingCart.Models
         // If you're running a local ProductCatalog service, make sure to change this URL.
         private static readonly string
             ProductCatalogBaseUrl =
-                "https://localhost:5003/products"; // Configure this by going to ProductCatalog/Properties/launchSettings.json.
-                // "https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
+                // "https://localhost:5003/products"; // Configure this by going to ProductCatalog/Properties/launchSettings.json.
+                "https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
 
         private static readonly string GetProductPathTemplate = "?productIds=[{0}]"; // eg. ?productIds=[1,2]
 

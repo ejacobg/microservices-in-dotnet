@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ShoppingCart.Models;
 
 namespace ShoppingCart.Controllers
@@ -10,13 +11,15 @@ namespace ShoppingCart.Controllers
         private readonly IShoppingCartStore _shoppingCartStore;
         private readonly IProductCatalogClient _productCatalogClient;
         private readonly IEventStore _eventStore;
+        private readonly ILogger<Models.ShoppingCart> _logger;
 
         public ShoppingCartController(IShoppingCartStore shoppingCartStore, IProductCatalogClient productCatalogClient,
-            IEventStore eventStore)
+            IEventStore eventStore, ILogger<Models.ShoppingCart> logger)
         {
             _shoppingCartStore = shoppingCartStore;
             _productCatalogClient = productCatalogClient;
             _eventStore = eventStore;
+            _logger = logger;
         }
 
         // Objects (like ShoppingCart) will be serialized to JSON before being returned in the response.
@@ -35,6 +38,12 @@ namespace ShoppingCart.Controllers
                     .GetShoppingCartItems(productIds);
             shoppingCart.AddItems(shoppingCartItems, _eventStore);
             await _shoppingCartStore.Save(shoppingCart);
+
+            _logger.LogInformation(
+                "Successfully added products to shopping cart {@productIds}, {@shoppingCart}",
+                productIds,
+                shoppingCart);
+
             return shoppingCart;
         }
 

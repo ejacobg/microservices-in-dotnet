@@ -28,8 +28,13 @@ namespace ShoppingCart
                     .AddClasses(c =>
                         c.Where(t =>
                             t != typeof(ProductCatalogClient)
+                            // Choose IEventStore implementation. (Comment to choose)
+                            && t != typeof(EsEventStore)
+                            // && t != typeof(InmemEventStore)
                             && t != typeof(SqlEventStore)
-                            && t != typeof(InmemEventStore)
+                            // ---------------------------------
+                            // Choose IShoppingCareStore implementation. (Comment to choose)
+                            // && t != typeof(ShoppingCartStore)
                             && t != typeof(InmemShoppingCartStore)
                             && t.GetMethods().All(m => m.Name != "<Clone>$")))
                     .AsImplementedInterfaces());
