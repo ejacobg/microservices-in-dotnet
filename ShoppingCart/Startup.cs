@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
 using Polly;
 using ShoppingCart.Models;
@@ -39,13 +41,28 @@ namespace ShoppingCart
                     // Set up a retry policy with exponential backoff (each waiting period is twice as long as the last).
                     policy.WaitAndRetryAsync(
                         3,
-                        attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt))));
+                        attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)),
+                        (ex, _) => Console.WriteLine(ex.ToString())));
+
+            // Add services for responding to health check endpoints.
+            services.AddHealthChecks()
+                .AddCheck( // Add a dummy liveness check that always returns healthy.
+                    "LivenessHealthCheck",
+                    () => HealthCheckResult.Healthy(),
+                    tags: new[] { "liveness" }); // Add tags to make this check easy to discover.
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            // Add health check endpoints.
+            app.UseHealthChecks("/health/startup",
+                // We always have the option of adding more tests and tags to make this check more robust.
+                new HealthCheckOptions { Predicate = x => x.Tags.Contains("startup") });
+            app.UseHealthChecks("/health/live",
+                new HealthCheckOptions { Predicate = x => x.Tags.Contains("liveness") });
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

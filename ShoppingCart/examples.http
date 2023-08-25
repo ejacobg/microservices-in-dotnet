@@ -24,3 +24,5 @@ GET {{scheme}}{{host}}:{{port}}/events?start=0&end=40
 Accept: application/json
 
 ###
+
+GET https://localhost:5001/health/live
