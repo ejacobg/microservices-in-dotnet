@@ -46,6 +46,9 @@ namespace ShoppingCart
 
             // Add services for responding to health check endpoints.
             services.AddHealthChecks()
+                .AddCheck<DbHealthCheck>( // Attach our custom database checker.
+                    nameof(DbHealthCheck),
+                    tags: new []{ "startup"})
                 .AddCheck( // Add a dummy liveness check that always returns healthy.
                     "LivenessHealthCheck",
                     () => HealthCheckResult.Healthy(),

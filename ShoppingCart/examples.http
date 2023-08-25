@@ -26,3 +26,7 @@ Accept: application/json
 ###
 
 GET https://localhost:5001/health/live
+
+###
+
+GET https://localhost:5001/health/startup
