@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LoyaltyProgram.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoyaltyProgram.Controllers
@@ -28,8 +31,19 @@ namespace LoyaltyProgram.Controllers
         }
 
         [HttpPut("{userId:int}")]
-        public User UpdateUser(int userId, [FromBody] User user)
-            => RegisteredUsers[userId] = user; // The user IDs can technically be edited, but we will be ignoring that for now.
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] // Only accept requests with a valid JWT.
+        public ActionResult<User> UpdateUser(int userId, [FromBody] User user)
+        {
+            var hasUserId = int.TryParse(
+                User.Claims.FirstOrDefault(c => c.Type == "userid")?.Value, // Grab the user ID from the set of claims.
+                out var userIdFromToken);
+
+            // Users are only able to edit their own settings, and no one else's.
+            if (!hasUserId || userId != userIdFromToken)
+                return Unauthorized();
+
+            return RegisteredUsers[userId] = user; // The user IDs can technically be edited, but we will be ignoring that for now.
+        }
 
         private User RegisterUser(User user)
         {
