@@ -18,15 +18,16 @@ namespace LoyaltyProgram
         public void ConfigureServices(IServiceCollection services)
         {
             // This service will enable reading and validating of identity tokens (as JWTs) from incoming request headers.
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    // DO NOT USE THIS CONFIGURATION IN PRODUCTION
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateIssuerSigningKey = false,
-                    SignatureValidator = (token, parameters) => new JwtSecurityToken(token),
-                });
+            // Disabled because this assumes the use of Azure API Management, which I don't have set up right now.
+            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //     .AddJwtBearer(o => o.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         // DO NOT USE THIS CONFIGURATION IN PRODUCTION
+            //         ValidateIssuer = false,
+            //         ValidateAudience = false,
+            //         ValidateIssuerSigningKey = false,
+            //         SignatureValidator = (token, parameters) => new JwtSecurityToken(token),
+            //     });
             services.AddControllers();
         }
 
@@ -37,7 +38,7 @@ namespace LoyaltyProgram
             // Enable usage of the [Authorize] attribute on your action methods,
             // which will require an identity token to be present in the request.
             // Controllers can access the user data from the ControllerBase.User property.
-            app.UseAuthorization();
+            // app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
