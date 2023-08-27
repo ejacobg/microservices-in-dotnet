@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: special-offers
+      app: special-offers-pod
   template:
     metadata:
       labels:
-        app: special-offers
+        app: special-offers-pod
     spec:
       containers:
         - name: special-offers
@@ -24,10 +24,24 @@ kind: Service
 metadata:
   name: special-offers
 spec:
-  type: LoadBalancer
-  ports:
-    - name: special-offers
-      port: 5002
-      targetPort: 80
   selector:
-    app: special-offers
+    app: special-offers-pod
+  ports:
+    - port: 5002
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: special-offers-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: special-offers-pod
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: loyalty-program-consumer
