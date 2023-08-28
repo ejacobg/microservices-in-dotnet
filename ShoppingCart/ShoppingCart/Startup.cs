@@ -33,9 +33,9 @@ namespace ShoppingCart
                             // && t != typeof(InmemEventStore)
                             && t != typeof(SqlEventStore)
                             // ---------------------------------
-                            // Choose IShoppingCareStore implementation. (Comment to choose)
-                            // && t != typeof(ShoppingCartStore)
-                            && t != typeof(InmemShoppingCartStore)
+                            // Choose IShoppingCartStore implementation. (Comment to choose)
+                            && t != typeof(ShoppingCartStore)
+                            // && t != typeof(InmemShoppingCartStore)
                             && t.GetMethods().All(m => m.Name != "<Clone>$")))
                     .AsImplementedInterfaces());
 

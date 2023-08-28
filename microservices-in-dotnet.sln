@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello", "Hello\Hello.csproj", "{3A59B771-5BA5-47AB-A27D-3DA6518283AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart", "ShoppingCart\ShoppingCart\ShoppingCart.csproj", "{9BB9E7BB-646E-4A60-80AA-ABDA965DAD7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoyaltyProgram", "LoyaltyProgram", "{018254E5-004A-4748-A3B0-482B3254C1BE}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialOffers", "LoyaltyPro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventConsumer", "LoyaltyProgram\EventConsumer\EventConsumer.csproj", "{7AC10562-56A1-4BB9-A803-4C90B52E8FED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog", "ProductCatalog\ProductCatalog.csproj", "{7289D9AC-EE71-4C54-B278-0487FC697478}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog", "ShoppingCart\ProductCatalog\ProductCatalog.csproj", "{7289D9AC-EE71-4C54-B278-0487FC697478}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "LoyaltyProgram\UnitTests\UnitTests.csproj", "{08F9FFBB-4BDE-4732-9DCE-318F42546EB3}"
 EndProject

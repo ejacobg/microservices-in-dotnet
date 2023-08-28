@@ -1,0 +1,570 @@
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-28T111737.200.json
+
+###
+
+DELETE https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-28T111735.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-28T111731.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-28T111728.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-28T111724.200.json
+
+###
+
+GET http://localhost:5002/products?productIds=[1,2,5]
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-28T111652.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET https://localhost:5001/users/0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-27T141259.200.json
+
+###
+
+PUT https://localhost:5001/users/0
+Accept: application/json
+Content-Type: application/json
+Content-Length: 111
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 100000,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+<> 2023-08-27T141257.200.json
+
+###
+
+GET https://localhost:5001/users/0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-27T141254.200.json
+
+###
+
+POST https://localhost:5001/users
+Accept: application/json
+Content-Type: application/json
+Content-Length: 107
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 10,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+<> 2023-08-27T141251.201.json
+
+###
+
+GET https://localhost:5001/users/0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-27T135143.200.json
+
+###
+
+PUT https://localhost:5001/users/0
+Accept: application/json
+Content-Type: application/json
+Content-Length: 111
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 100000,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+###
+
+POST https://localhost:5001/users
+Accept: application/json
+Content-Type: application/json
+Content-Length: 107
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Christian",
+  "loyaltyPoints": 10,
+  "settings": {
+    "interests":["whisky", "cycling"]
+  }
+}
+
+<> 2023-08-27T135123.201.json
+
+###
+
+GET https://localhost:5001/health/live
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T153427.200.txt
+
+###
+
+POST http://localhost:5000/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-25T152644.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-25T151706.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-25T151231.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-25T151056.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+###
+
+GET https://localhost:5001/health/startup
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-25T150556.200.txt
+
+###
+
+GET https://localhost:5001/health/startup
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-24T190651.200.txt
+
+###
+
+GET https://localhost:5001/health/startup
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-24T190511.503.txt
+
+###
+
+GET https://localhost:5001/health/live
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-24T190040.200.txt
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144818.200.json
+
+###
+
+DELETE https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T144815.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144812.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T144809.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144807.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144803.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144207.200.json
+
+###
+
+DELETE https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T144203.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144131.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T144123.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144019.200.json
+
+###
+
+GET http://localhost:5002/products?productIds=[1,2,5]
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T144003.200.json
+
+###
+
+GET https://localhost:5001/events?start=0&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+DELETE https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T131544.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T131542.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131540.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131304.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131249.200.json
+
+###
+
+GET https://localhost:5001/events?start=20&end=40
+Accept: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131240.200.json
+
+###
+
+POST https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T131233.200.json
+
+###
+
+GET http://localhost:5002/products?productIds=[1,2,5]
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131225.200.json
+
+###
+
+DELETE https://localhost:5001/shoppingcart/123/items
+Accept: application/json
+Content-Type: application/json
+Content-Length: 6
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+[1, 2]
+
+<> 2023-08-22T131148.200.json
+
+###
+
+GET https://localhost:5001/shoppingcart/123
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.7)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-08-22T131139.200.json
+
+###
+
