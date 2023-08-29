@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Polly;
 
 namespace ApiGateway
 {
@@ -26,6 +27,10 @@ namespace ApiGateway
         {
             services.AddHealthChecks();
             services.AddControllersWithViews();
+            services.AddHttpClient("ProductCatalogClient", client => client.BaseAddress = new Uri("https://localhost:5003"))
+                .AddTransientHttpErrorPolicy(p =>
+                    p.WaitAndRetryAsync(3, attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt))));
+            services.AddHttpClient("ShoppingCartClient", client => client.BaseAddress = new Uri("https://localhost:5001"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
