@@ -23,8 +23,8 @@ namespace ShoppingCart.Models
         // If you're running a local ProductCatalog service, make sure to change this URL.
         private static readonly string
             ProductCatalogBaseUrl =
-                // "https://localhost:5003/products"; // Configure this by going to ProductCatalog/Properties/launchSettings.json.
-                "https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
+                "https://localhost:5003/products"; // Configure this by going to ProductCatalog/Properties/launchSettings.json.
+                // "https://git.io/JeHiE"; // Not a real service, just points to a hardcoded JSON file.
 
         private static readonly string GetProductPathTemplate = "?productIds=[{0}]"; // eg. ?productIds=[1,2]
 
@@ -84,15 +84,15 @@ namespace ShoppingCart.Models
             return products
                 .Select(p =>
                     new ShoppingCartItem(
-                        p.ProductId,
+                        p.ProductCatalogueId,
                         p.ProductName,
-                        p.ProductDescription,
+                        p.Description,
                         p.Price
                     ));
         }
 
         // Too avoid too much tight coupling, only the ProductCatalogClient knows the shape of the response returned by the product catalog.
         // The product catalog actually returns more data than what is described here, however these are the fields that this service will actually use.
-        private record ProductCatalogProduct(int ProductId, string ProductName, string ProductDescription, Money Price);
+        private record ProductCatalogProduct(int ProductCatalogueId, string ProductName, string Description, Money Price);
     }
 }

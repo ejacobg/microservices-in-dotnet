@@ -1,1 +1,1 @@
-GET http://localhost:5002/products?productIds=[1,2,5]
+GET http://localhost:5002/products?productIds=1,2,3,4

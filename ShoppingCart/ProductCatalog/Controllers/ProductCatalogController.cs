@@ -38,7 +38,7 @@ namespace ProductCatalog.Controllers
             productIds.Select(id => new ProductCatalogProduct(id, "foo" + id, "bar", new Money("", 0))); // Money fields cannot be null.
     }
 
-    public record ProductCatalogProduct(int ProductId, string ProductName, string Description, Money Price);
+    public record ProductCatalogProduct(int ProductCatalogueId, string ProductName, string Description, Money Price);
 
     public record Money(string Currency, decimal Amount);
 }
