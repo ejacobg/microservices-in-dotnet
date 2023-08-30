@@ -29,6 +29,7 @@ docker/tag:
 docker/push-registry:
 	docker push ejacobgshoppingcartregistry.azurecr.io/shopping-cart:1.0.0
 
+# Confirmed to work with SQL Server 2022.
 .PHONY: docker/pull-sql-server
 docker/pull-sql-server:
 	docker pull mcr.microsoft.com/mssql/server
@@ -62,7 +63,7 @@ docker/run-eventstore:
 # Make sure "Enable Kubernetes" is enabled in your Docker Desktop settings.
 # Make sure that you're using the "image: shopping-cart" line in shopping-cart.yaml.
 # Confirm that you're in the correct context (ie. AKS or localhost) before using these targets. 
-# Make sure that all relevant container have been built and pushed.
+# Make sure that all relevant containers have been built and pushed.
 
 .PHONY: k8s/deploy
 k8s/deploy:
