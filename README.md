@@ -1,6 +1,6 @@
 # Microservices in .NET
 
-Annotated projects from Christian Horsdal's [_Microservices in .NET, Second Edition_](https://www.manning.com/books/microservices-in-net-second-edition). This repository contains the final versions of the programs found in the [original repository](https://github.com/horsdal/microservices-in-dotnet-book-second-edition), but with some bug fixes, annotations, supplementary Makefiles, and example requests. I am using the conventional MVC directory structure rather than following the structure used in the book. For more discussion on the book and my thoughts about it, see its associated [blog post](https://ejacobg.com/projects/microservices-in-dotnet/).
+Annotated projects from Christian Horsdal's [_Microservices in .NET, Second Edition_](https://www.manning.com/books/microservices-in-net-second-edition). This repository contains the final versions of the programs found in the [original repository](https://github.com/horsdal/microservices-in-dotnet-book-second-edition), but with some bug fixes, annotations, supplementary Makefiles, and example requests. I am using the conventional MVC directory structure rather than following the structure used in the book. For more discussion on the book and my thoughts about it, see its associated [blog post](https://ejacobg.com/notes/microservices-in-dotnet/).
 
 ## Directory Guide
 
@@ -24,7 +24,7 @@ The loyalty program microservice is fundamentally pretty simple. It allows you t
 
 The event consumer service is meant to be an internal component of the loyalty program microservice. It is meant to be run as a cronjob, periodically pulling and processing events from the special offers microservice.
 
-The API gateway service provides a command-line interface into the loyalty program application. It technically isn't needed in order to make requests to the loyalty program microservice however.
+The API gateway service provides a command-line interface into the loyalty program application. This is just for convenience and isn't needed to make requests to the loyalty program microservice.
 
 #### Usage
 
